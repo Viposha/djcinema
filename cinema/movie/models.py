@@ -12,7 +12,7 @@ class Hall(models.Model):
 	class Meta:
 		verbose_name = 'Зал'
 		verbose_name_plural = 'Зали'
-		ordering = ['id']
+
 
 
 class Movie(models.Model):
@@ -27,7 +27,7 @@ class Movie(models.Model):
 	class Meta:
 		verbose_name = 'Фільм'
 		verbose_name_plural = 'Фільми'
-		ordering = ['id']
+
 
 
 class Review(models.Model):
@@ -41,7 +41,7 @@ class Review(models.Model):
 	class Meta:
 		verbose_name = 'Відгук'
 		verbose_name_plural = 'Відгуки'
-		ordering = ['id']
+
 
 
 class Session(models.Model):
@@ -56,7 +56,7 @@ class Session(models.Model):
 	class Meta:
 		verbose_name = 'Сеанс'
 		verbose_name_plural = 'Сеанси'
-		ordering = ['id']
+
 
 
 class Ticket(models.Model):
