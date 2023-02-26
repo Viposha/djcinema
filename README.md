@@ -1,0 +1,2 @@
+# djcinema
+Django pet project
