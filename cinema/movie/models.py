@@ -14,7 +14,6 @@ class Hall(models.Model):
 		verbose_name_plural = 'Зали'
 
 
-
 class Movie(models.Model):
 	title = models.CharField(max_length=100, primary_key=True)
 	description = models.TextField()
@@ -27,7 +26,6 @@ class Movie(models.Model):
 	class Meta:
 		verbose_name = 'Фільм'
 		verbose_name_plural = 'Фільми'
-
 
 
 class Review(models.Model):
@@ -43,10 +41,10 @@ class Review(models.Model):
 		verbose_name_plural = 'Відгуки'
 
 
-
 class Session(models.Model):
 	hall = models.ForeignKey(Hall, on_delete=models.PROTECT)
 	title = models.ForeignKey(Movie, on_delete=models.PROTECT)
+	price = models.IntegerField()
 	time = models.CharField(max_length=100)
 	date = models.CharField(max_length=100)
 
@@ -56,7 +54,6 @@ class Session(models.Model):
 	class Meta:
 		verbose_name = 'Сеанс'
 		verbose_name_plural = 'Сеанси'
-
 
 
 class Ticket(models.Model):
