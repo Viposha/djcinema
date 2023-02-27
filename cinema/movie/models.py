@@ -44,12 +44,12 @@ class Review(models.Model):
 class Session(models.Model):
 	hall = models.ForeignKey(Hall, on_delete=models.PROTECT)
 	title = models.ForeignKey(Movie, on_delete=models.PROTECT)
-	price = models.IntegerField()
+	price = models.IntegerField(default=150)
 	time = models.CharField(max_length=100)
 	date = models.CharField(max_length=100)
 
 	def __str__(self):
-		return self.title
+		return f'{self.date} {self.time} {self.title}'
 
 	class Meta:
 		verbose_name = 'Сеанс'
