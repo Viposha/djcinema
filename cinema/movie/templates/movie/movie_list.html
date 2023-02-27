@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+{% for item in movies %}
+<div class="col-sm-4 mb-sm-2">
+<div class="card">
+    <div class="card-body" >
+        <div class="media">
+            <h5 class="card-title" align="center">{{ item.title }}</h5>
+            <img src="{{ item.photo.url }}"  width="380" height="400">
+            <div class="media-body">
+                <p class="card-text" >{{ item.description|truncatewords:35 }}</p>
+                <a href="#" class="btn btn-primary">Read more...</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
