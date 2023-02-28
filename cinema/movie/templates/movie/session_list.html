@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+{% for item in sessions %}
+<div class="col-sm-4 mt-2 sm-5">
+<div class="card">
+    <div class="card-body" >
+        <div class="media">
+            <h2 class="card-title" align="center">{{ item.title.title }}</h2> <hr>
+            <h5 class="card-title" align="center">{{ item.title.genre }}</h5><hr>
+            <h5 class="card-title" align="center">Дата сеансу: {{ item.date}}</h5><hr>
+           <h5  align="center">Час сеансу:</h5>
+            <p><a href=""><button class="btn float-start btn-outline-secondary">{{item.time}}</button></a></p>
+            <a href="{{ item.get_absolute_url }}"><img class="card-img-top mt-2" src="{{ item.title.photo.url }}"  width="" height=""></a>
+            <div class="media-body">
+                <p class="card-text" >{{ item.title.description|truncatewords:35 }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endfor %}
+</div>
+
+{% endblock %}

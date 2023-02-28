@@ -52,6 +52,9 @@ class Session(models.Model):
 	time = models.CharField(max_length=100)
 	date = models.CharField(max_length=100)
 
+	def get_absolute_url(self):
+		return reverse('movie_detail', kwargs={'pk': self.title})
+
 	def __str__(self):
 		return f'{self.date} {self.time} {self.title}'
 

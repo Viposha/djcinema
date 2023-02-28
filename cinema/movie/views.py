@@ -1,10 +1,20 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Movie
+from .models import Movie, Session
 
 
-def home(request):
-	return render (request, 'movie/home.html')
+class HomeMovie(ListView):
+	model = Session
+	template_name = 'movie/session_list.html'
+	context_object_name = 'sessions'
+
+	def get_context_data(self, *, object_list=None, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['title'] = 'Сеанси'
+		return context
+
+	def get_queryset(self):
+		return Session.objects.all()
 
 
 class Movies(ListView):
@@ -24,4 +34,6 @@ class Movies(ListView):
 class ViewMovie(DetailView):
 	model = Movie
 	context_object_name = 'movie_item'
+
+
 
