@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
 from django.views.generic import ListView, DetailView
-from .models import Movie, Session
+from .models import Movie, Session, Ticket
 from .forms import CheckoutForm
+from .utils import seats_dict
 
 
 class HomeMovie(ListView):
@@ -62,9 +63,18 @@ def pay_view(request):
 	if request.method == 'POST':
 		form = CheckoutForm(request.POST)
 		form_data = request.POST
+		time = request.session.get('time')
+		movie = Session.objects.get(time=time)
 		email = form_data['email']
-		print(email)
+		data = request.session.get('data')
+		hall = movie.hall.title
+		title = movie.title
 		if form.is_valid():
+			for place in data:
+				seat = seats_dict[int(place)][1]
+				row = seats_dict[int(place)][0]
+				ticket = Ticket(raw=int(row), seat=int(seat), hall_id=hall, title_id=title, time=time, user_email=email)
+				ticket.save()
 			messages.add_message(request, messages.SUCCESS, 'Квитки придбані. Чекаємо Вас у нашому кінотеатрі!')
 			return redirect(reverse('home'))
 	else:

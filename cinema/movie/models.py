@@ -75,7 +75,7 @@ class Ticket(models.Model):
 	user_email = models.EmailField(max_length=50, blank=True)
 
 	def __str__(self):
-		return self.title
+		return self.user_email
 
 	class Meta:
 		verbose_name = 'Квиток'
