@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-4 mt-sm-2">
+        <div class="card">
+            <div class="card-body" >
+                <div class="media">
+                    <img class="card-img-top rounded float-start" src="{{ hall_item.title.photo.url }}" width="240" height="392">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 mt-sm-2">
+        <div class="card">
+            <div class="card-body" >
+                <div class="media">
+                    <p><h2>{{hall_item.title}}</h2></p><br>
+                    <p>Київ, ТРЦ Django Cinema </p><br>
+                    <p> Зал: {{hall_item.hall.title}} </p><br>
+                    <p> {{hall_item.date}} </p><br>
+                    <p> {{hall_item.time}}</p><br>
+                    <p> 18+</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 mt-sm-2">
+        <div class="card">
+            <div class="card-body" >
+                <div class="media">
+                    <img class="card-img-top rounded float-start" src="{{ hall_item.title.photo.url }}" width="240" height="392">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="container" align="center" >
+    <p align="center">Екран</p>
+    <form method="POST">
+        {% csrf_token %}
+        {% for place in seats_range %}
+            <label class="label" for="{{place}}">
+                <input class="form-check-input" type="checkbox" name="seat"  id="{{place}}">
+                    <span class="tooltip">
+                        Ряд: {{place}}
+                        Місце: {{place}}
+                        {{ hall_item.price }} грн
+                    </span>
+            </label>
+        {% if place == 10 %}
+        <br>
+        {% endif %}
+        {% if place == 20 %}
+        <br>
+        {% endif %}
+        {% if place == 30 %}
+        <br>
+        {% endif %}
+        {% if place == 40 %}
+        <br>
+        {% endif %}
+        {% if place == 50 %}
+        <br>
+        {% endif %}
+        {% if place == 60 %}
+        <br>
+        {% endif %}
+        {% if place == 70 %}
+        <br>
+        {% endif %}
+        {% if place == 80 %}
+        <br>
+        {% endif %}
+        {% if place == 90 %}
+        <br>
+        {% endif %}
+        {% endfor %}
+    </form>
+</div>
+
+<!--<div class="container" align="center" >-->
+<!--            <p align="center">Екран</p>-->
+<!--            <form method="POST">-->
+<!--            {% csrf_token %}-->
+<!--            {% for place in range. %}-->
+<!--                {% if place.id in ticket_id %}-->
+<!--                    <label for="{{place.id}}">-->
+<!--                    <input class="form-check-input" type="checkbox" name="seat" value="{{place.id}}" id="{{place.id}}" disabled >-->
+<!--                    </label>-->
+<!--                    {% if place.seat == 10 %}-->
+<!--                        <br>-->
+<!--                    {% endif %}-->
+<!--                {% else %}-->
+<!--                    <label class="label" for="{{place.id}}">-->
+<!--                    <input class="form-check-input" type="checkbox" name="seat" value="{{place.id}}" id="{{place.id}}">-->
+<!--                    <span class="place">{{place.seat}}</span>-->
+<!--                        <span class="tooltip">-->
+<!--                            Ряд: {{place.raw}}-->
+<!--                            Місце: {{place.seat}}-->
+<!--                            160 грн-->
+<!--                        </span>-->
+<!--                    </label>-->
+<!--                    {% if place.seat == 10 %}-->
+<!--                        <br>-->
+<!--                    {% endif %}-->
+<!--                {% endif %}-->
+<!--            {% endfor %}-->
+<!--            <br>-->
+<!--            <input type="submit" value="Купити">-->
+<!--            </form>-->
+<!--        </div>-->
+{% endblock %}

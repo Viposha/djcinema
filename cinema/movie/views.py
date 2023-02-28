@@ -36,4 +36,25 @@ class ViewMovie(DetailView):
 	context_object_name = 'movie_item'
 
 
+class Hall(DetailView):
+	model = Session
+	context_object_name = 'hall_item'
+	template_name = 'movie/hall_detail.html'
+
+	def get_context_data(self, *, object_list=None, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['title'] = 'Забронювати сеанс'
+		context['seats_range'] = range(1, super().get_context_data(**kwargs)['hall_item'].hall.seats + 1)  # take a numer of seats in hall
+		return context
+
+
+# def hall_view(request, time, pk):
+# 	session = Session.objects.all()
+# 	context={'raws':
+#
+# 	}
+# 	return render(request, 'movie/hall_detail.html')
+
+
+
 
