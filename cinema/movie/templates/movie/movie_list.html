@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+{{title}}
+{% endblock %}
+
 {% block content %}
 
 <div class="row">
 {% for item in movies %}
-<div class="col-sm-4 mb-sm-2">
+<div class="col-sm-4 mt-sm-2">
 <div class="card">
     <div class="card-body" >
         <div class="media">
             <h2 class="card-title" align="center">{{ item.title }}</h2> <hr>
             <h5 class="card-title" align="center">{{ item.genre }}</h5><hr>
-            <img src="{{ item.photo.url }}"  width="380" height="400">
+            <a href="{{ item.get_absolute_url }}"><img class="card-img-top" src="{{ item.photo.url }}"  width="" height="400"></a>
             <div class="media-body">
                 <p class="card-text" >{{ item.description|truncatewords:35 }}</p>
-                <a href="#" class="btn btn-primary">Доступні сеанси</a>
+                <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Доступні сеанси</a>
             </div>
         </div>
     </div>

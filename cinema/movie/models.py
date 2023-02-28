@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Hall(models.Model):
@@ -19,6 +20,9 @@ class Movie(models.Model):
 	description = models.TextField()
 	genre = models.CharField(max_length=50)
 	photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+
+	def get_absolute_url(self):
+		return reverse('movie_detail', kwargs={'pk': self.title})
 
 	def __str__(self):
 		return self.title
