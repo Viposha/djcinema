@@ -14,7 +14,7 @@ class HomeMovie(ListView):
 		return context
 
 	def get_queryset(self):
-		return Session.objects.all()
+		return Session.objects.order_by('time').all()
 
 
 class Movies(ListView):

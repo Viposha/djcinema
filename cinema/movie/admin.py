@@ -16,6 +16,7 @@ class MovieAdmin(admin.ModelAdmin):
 class SessionAdmin(admin.ModelAdmin):
 	list_display = ('hall', 'title', 'price', 'time', 'date')
 	list_display_links = ('title',)
+	ordering = ('time',)
 
 
 class TicketAdmin(admin.ModelAdmin):

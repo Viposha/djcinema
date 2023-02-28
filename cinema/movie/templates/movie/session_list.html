@@ -13,7 +13,7 @@
 <div class="card">
     <div class="card-body" >
         <div class="media">
-            <h2 class="card-title" align="center">{{ item.title.title }}</h2> <hr>
+            <a href="{{ item.get_absolute_url }}"><h2 class="card-title" align="center">{{ item.title.title }}</h2></a> <hr>
             <h5 class="card-title" align="center">{{ item.title.genre }}</h5><hr>
             <h5 class="card-title" align="center">Дата сеансу: {{ item.date}}</h5><hr>
            <h5  align="center">Час сеансу:</h5>
