@@ -48,7 +48,8 @@
         {% csrf_token %}
         {% for place in seats_range %}
             <label class="label" for="{{place}}">
-                <input class="form-check-input" type="checkbox" name="seat"  id="{{place}}">
+                <input class="form-check-input" type="checkbox" name="seat" value="{{place}}"  id="{{place}}">
+                <span class="place">{{place}}</span>
                     <span class="tooltip">
                         Ряд: {{place}}
                         Місце: {{place}}
@@ -83,38 +84,7 @@
         <br>
         {% endif %}
         {% endfor %}
+        <p><input type="submit" value="Купити"></p>
     </form>
 </div>
-
-<!--<div class="container" align="center" >-->
-<!--            <p align="center">Екран</p>-->
-<!--            <form method="POST">-->
-<!--            {% csrf_token %}-->
-<!--            {% for place in range. %}-->
-<!--                {% if place.id in ticket_id %}-->
-<!--                    <label for="{{place.id}}">-->
-<!--                    <input class="form-check-input" type="checkbox" name="seat" value="{{place.id}}" id="{{place.id}}" disabled >-->
-<!--                    </label>-->
-<!--                    {% if place.seat == 10 %}-->
-<!--                        <br>-->
-<!--                    {% endif %}-->
-<!--                {% else %}-->
-<!--                    <label class="label" for="{{place.id}}">-->
-<!--                    <input class="form-check-input" type="checkbox" name="seat" value="{{place.id}}" id="{{place.id}}">-->
-<!--                    <span class="place">{{place.seat}}</span>-->
-<!--                        <span class="tooltip">-->
-<!--                            Ряд: {{place.raw}}-->
-<!--                            Місце: {{place.seat}}-->
-<!--                            160 грн-->
-<!--                        </span>-->
-<!--                    </label>-->
-<!--                    {% if place.seat == 10 %}-->
-<!--                        <br>-->
-<!--                    {% endif %}-->
-<!--                {% endif %}-->
-<!--            {% endfor %}-->
-<!--            <br>-->
-<!--            <input type="submit" value="Купити">-->
-<!--            </form>-->
-<!--        </div>-->
 {% endblock %}
