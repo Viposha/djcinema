@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{{data}}
+{{time}}
+{{movie.price}}
+{{movie.title}}
+{{movie.hall.title}}
+<form class="mt-5" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Сплатити">
+</form>
+
+
+
+
+{% endblock %}
