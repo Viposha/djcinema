@@ -67,7 +67,8 @@ class Session(models.Model):
 
 
 class Ticket(models.Model):
-	raw = models.IntegerField()
+	seat_id = models.IntegerField()
+	row = models.IntegerField()
 	seat = models.IntegerField()
 	hall = models.ForeignKey(Hall, on_delete=models.PROTECT)
 	title = models.ForeignKey(Movie, on_delete=models.PROTECT)

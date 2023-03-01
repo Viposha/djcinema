@@ -49,6 +49,12 @@ class Hall(DetailView):
 		context = super().get_context_data(**kwargs)
 		context['title'] = 'Забронювати сеанс'
 		context['seats_range'] = range(1, super().get_context_data(**kwargs)['hall_item'].hall.seats + 1)  # take a number of seats in hall
+		tickets= Ticket.objects.filter(time=context['hall_item'].time)
+		seats_id_list = []
+		for ticket in tickets:
+			seats_id_list.append(ticket.seat_id)
+		print(seats_id_list)
+		context['seats_id_list'] = seats_id_list
 		return context
 
 	def post(self, request, time, *args, **kwargs):
@@ -70,10 +76,11 @@ def pay_view(request):
 		hall = movie.hall.title
 		title = movie.title
 		if form.is_valid():
+			print(form.cleaned_data)
 			for place in data:
 				seat = seats_dict[int(place)][1]
 				row = seats_dict[int(place)][0]
-				ticket = Ticket(raw=int(row), seat=int(seat), hall_id=hall, title_id=title, time=time, user_email=email)
+				ticket = Ticket(seat_id=int(place), row=int(row), seat=int(seat), hall_id=hall, title_id=title, time=time, user_email=email)
 				ticket.save()
 			messages.add_message(request, messages.SUCCESS, 'Квитки придбані. Чекаємо Вас у нашому кінотеатрі!')
 			return redirect(reverse('home'))

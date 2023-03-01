@@ -47,6 +47,38 @@
     <form method="POST">
         {% csrf_token %}
         {% for place in seats_range %}
+            {% if place in seats_id_list %}
+                <label for="{{place}}">
+                    <input class="form-check-input" type="checkbox" name="seat" value="{{place}}"  id="{{place}}" disabled >
+                </label>
+        {% if place == 10 %}
+        <br>
+        {% endif %}
+        {% if place == 20 %}
+        <br>
+        {% endif %}
+        {% if place == 30 %}
+        <br>
+        {% endif %}
+        {% if place == 40 %}
+        <br>
+        {% endif %}
+        {% if place == 50 %}
+        <br>
+        {% endif %}
+        {% if place == 60 %}
+        <br>
+        {% endif %}
+        {% if place == 70 %}
+        <br>
+        {% endif %}
+        {% if place == 80 %}
+        <br>
+        {% endif %}
+        {% if place == 90 %}
+        <br>
+        {% endif %}
+            {% else %}
             <label class="label" for="{{place}}">
                 <input class="form-check-input" type="checkbox" name="seat" value="{{place}}"  id="{{place}}">
                 <span class="place">{{place}}</span>
@@ -82,6 +114,7 @@
         {% endif %}
         {% if place == 90 %}
         <br>
+        {% endif %}
         {% endif %}
         {% endfor %}
         <p><input type="submit" value="Купити"></p>

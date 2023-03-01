@@ -20,7 +20,7 @@ class SessionAdmin(admin.ModelAdmin):
 
 
 class TicketAdmin(admin.ModelAdmin):
-	list_display = ('raw', 'seat', 'hall', 'title', 'time', 'user_email')
+	list_display = ('seat_id', 'row', 'seat', 'hall', 'title', 'time', 'user_email')
 	list_display_links = ('title', 'user_email')
 
 
