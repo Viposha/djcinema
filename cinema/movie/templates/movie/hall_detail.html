@@ -83,9 +83,8 @@
                 <input class="form-check-input" type="checkbox" name="seat" value="{{place}}"  id="{{place}}">
                 <span class="place">{{place}}</span>
                     <span class="tooltip">
-                        Ряд: {{place}}
                         Місце: {{ place }}
-                        {{ hall_item.price }} грн
+                        Ціна: {{ hall_item.price }} грн
                     </span>
             </label>
         {% if place == 10 %}

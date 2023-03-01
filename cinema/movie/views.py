@@ -87,5 +87,6 @@ def pay_view(request):
 		data = request.session.get('data')
 		time = request.session.get('time')
 		movie = Session.objects.get(time=time)
+		total_price = len(data) * movie.price
 		form = CheckoutForm()
-	return render(request, 'movie/pay.html', {'form': form, 'time': time, 'data': data, 'movie': movie})
+	return render(request, 'movie/pay.html', {'form': form, 'time': time, 'data': data, 'movie': movie, 'total_price':total_price})

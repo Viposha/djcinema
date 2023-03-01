@@ -2,12 +2,49 @@
 {% load static %}
 
 {% block content %}
+<div class="row">
+    <div class="col-sm-4 mt-sm-2">
+        <div class="card">
+            <div class="card-body" >
+                <div class="media">
+                    <img class="card-img-top rounded float-start"  src="{{ movie.title.photo.url }}"  width="" height="400">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 mt-sm-2">
+        <div class="card">
+            <div class="card-body" >
+                <div class="media">
+                    <p align="justify"><h2>{{movie.title}}</h2></p><br>
+                    <p> Зал: {{movie.hall.title}} </p><br>
+                     <p> Час: {{time}}</p><br>
+                    {% for seat in data %}
+                    <p>Місце: {{seat}} Ціна: {{movie.price}} грн. </p>
+                    {% endfor %}
+                    <p>Загальна вартість: {{total_price}} грн </p><br>
 
-{{data}}
-{{time}}
-{{movie.price}}
-{{movie.title}}
-{{movie.hall.title}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 mt-sm-2">
+        <div class="card">
+            <div class="card-body" >
+                <div class="media">
+                    <img class="card-img-top rounded float-start"  src="{{ movie.title.photo.url }}"  width="" height="400">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
 <form class="mt-5" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
