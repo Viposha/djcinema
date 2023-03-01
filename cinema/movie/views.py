@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
 from django.views.generic import ListView, DetailView
-from .models import Movie, Session, Ticket
-from .forms import CheckoutForm
+from .models import Movie, Session, Ticket, Review
+from .forms import CheckoutForm, ReviewForm
 from .utils import seats_dict
 
 
@@ -38,6 +38,19 @@ class Movies(ListView):
 class ViewMovie(DetailView):
 	model = Movie
 	context_object_name = 'movie_item'
+
+	def get_context_data(self, *, object_list=None, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['movie_title'] = super().get_context_data(**kwargs)['movie_item']
+		context['form'] = ReviewForm()
+		context['review'] = Review.objects.all()
+		return context
+
+	def post(self, request, *args, **kwargs):
+		if request.method == 'POST':
+			form = ReviewForm(request.POST)
+			review = form.save()
+			return redirect(reverse('home'))
 
 
 class Hall(DetailView):

@@ -24,7 +24,13 @@ class TicketAdmin(admin.ModelAdmin):
 	list_display_links = ('title', 'user_email')
 
 
+class ReviewAdmin(admin.ModelAdmin):
+	list_display = ('rating', 'content', 'title')
+	list_display_links = ('title', )
+
+
 admin.site.register(Hall, HallAdmin)
 admin.site.register(Movie, MovieAdmin)
 admin.site.register(Session, SessionAdmin)
 admin.site.register(Ticket, TicketAdmin)
+admin.site.register(Review, ReviewAdmin)

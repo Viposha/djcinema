@@ -7,6 +7,7 @@
 
 {% block content %}
 
+
 <div class="row">
 <div class="col-sm-4 mt-sm-2">
 <div class="card">
@@ -20,7 +21,38 @@
             </div>
         </div>
     </div>
+    </div>
+</div>
+<div class="col-sm-4 mt-sm-2">
+<div class="card">
+    <div class="card-body" >
+        <div class="media">
+            <h2 class="card-title" align="center">Залишити відгук</h2> <hr>
+            <form  method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary btn-block">Надіслати</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div><div class="col-sm-4 mt-sm-2">
+<div class="card">
+    <div class="card-body" >
+        <div class="media">
+            <h2 class="card-title" align="center">Відгуки</h2> <hr>
+            {% for item in review %}
+            {% if item.title == movie_title  %}
+            <p>{{item.content}}</p>
+            {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
 </div>
 </div>
-</div>
+
+
+
+
 {% endblock %}
