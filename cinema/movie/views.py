@@ -53,7 +53,6 @@ class Hall(DetailView):
 		seats_id_list = []
 		for ticket in tickets:
 			seats_id_list.append(ticket.seat_id)
-		print(seats_id_list)
 		context['seats_id_list'] = seats_id_list
 		return context
 
