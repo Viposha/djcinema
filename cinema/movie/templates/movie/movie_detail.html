@@ -43,7 +43,7 @@
             <h2 class="card-title" align="center">Відгуки</h2> <hr>
             {% for item in review %}
             {% if item.title == movie_title  %}
-            <p>{{item.content}}</p>
+            <p>{{item.content}}</p><hr>
             {% endif %}
             {% endfor %}
 
