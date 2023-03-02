@@ -78,6 +78,7 @@ class Hall(DetailView):
 
 
 def pay_view(request):
+	global total_price
 	if request.method == 'POST':
 		form = CheckoutForm(request.POST)
 		form_data = request.POST
