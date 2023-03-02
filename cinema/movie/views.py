@@ -1,11 +1,15 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from .models import Movie, Session, Ticket, Review
 from .forms import CheckoutForm, ReviewForm
 from .utils import seats_dict
 
+
+class ErrorView(TemplateView):
+	template_name = 'movie/error.html'
 
 class HomeMovie(ListView):
 	model = Session
@@ -49,8 +53,13 @@ class ViewMovie(DetailView):
 	def post(self, request, *args, **kwargs):
 		if request.method == 'POST':
 			form = ReviewForm(request.POST)
-			review = form.save()
-			return redirect(reverse('home'))
+			if form.is_valid():
+				form.save()
+				return redirect(reverse('home'))
+			else:
+				messages.error(request, 'Помилка. Перевірте дані')
+		return redirect(reverse('error'))
+
 
 
 class Hall(DetailView):

@@ -1,10 +1,12 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import Review
+from captcha.fields import CaptchaField
 import re
 
 
 class ReviewForm(forms.ModelForm):
+	captcha = CaptchaField()
 	class Meta:
 		model = Review
 		fields = ['rating', 'content', 'title']
