@@ -39,4 +39,6 @@ class CheckoutForm(forms.Form):
 		valid_to = self.cleaned_data['valid_to']
 		if not re.match(r"\d{2}/\d{2}", valid_to):
 			raise ValidationError('Поле Термін дії має виглядати так mm/yy')
+		elif int(valid_to[0:2]) > 12 or int(valid_to[0:2]) < 1:
+			raise ValidationError('Поле mm має бути від 1 до 12')
 		return valid_to

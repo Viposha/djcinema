@@ -7,14 +7,6 @@
 
 {% block content %}
 
-  {% if messages %}
-    <div class="alert alert-success " role="alert">
-    {% for message in messages %}
-        <p align="justify"><h1>{{ message }}</h1></p>
-    {% endfor %}
-    </div>
-    {% endif %}
-
 <div class="row">
 {% for item in sessions %}
 <div class="col-sm-4 mt-2 sm-5">
