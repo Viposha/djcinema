@@ -1,4 +1,3 @@
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
@@ -6,10 +5,12 @@ from django.views.generic import ListView, DetailView, TemplateView
 from .models import Movie, Session, Ticket, Review
 from .forms import CheckoutForm, ReviewForm
 from .utils import seats_dict
+from django.core.mail import send_mail
 
 
 class ErrorView(TemplateView):
 	template_name = 'movie/error.html'
+
 
 class HomeMovie(ListView):
 	model = Session
@@ -61,7 +62,6 @@ class ViewMovie(DetailView):
 		return redirect(reverse('error'))
 
 
-
 class Hall(DetailView):
 	model = Session
 	context_object_name = 'hall_item'
@@ -70,8 +70,9 @@ class Hall(DetailView):
 	def get_context_data(self, *, object_list=None, **kwargs):
 		context = super().get_context_data(**kwargs)
 		context['title'] = 'Забронювати сеанс'
-		context['seats_range'] = range(1, super().get_context_data(**kwargs)['hall_item'].hall.seats + 1)  # take a number of seats in hall
-		tickets= Ticket.objects.filter(time=context['hall_item'].time)
+		context['seats_range'] = range(1, super().get_context_data(**kwargs)[
+			'hall_item'].hall.seats + 1)  # take a number of seats in hall
+		tickets = Ticket.objects.filter(time=context['hall_item'].time)
 		seats_id_list = []
 		for ticket in tickets:
 			seats_id_list.append(ticket.seat_id)
@@ -102,8 +103,14 @@ def pay_view(request):
 			for place in data:
 				seat = seats_dict[int(place)][1]
 				row = seats_dict[int(place)][0]
-				ticket = Ticket(seat_id=int(place), row=int(row), seat=int(seat), hall_id=hall, title_id=title, time=time, user_email=email)
+				ticket = Ticket(seat_id=int(place), row=int(row), seat=int(seat), hall_id=hall, title_id=title,
+								time=time, user_email=email)
 				ticket.save()
+			send_mail('DJ Cinema Квитки',
+					 f'Ви придбали квитки на фільм {title}. Початок сеансу о {time}',
+					'takmebli@ukr.net',
+					[email],
+					  fail_silently=True)
 			messages.add_message(request, messages.SUCCESS, 'Квитки придбані. Чекаємо Вас у нашому кінотеатрі!')
 			return redirect(reverse('home'))
 	else:
@@ -112,4 +119,5 @@ def pay_view(request):
 		movie = Session.objects.get(time=time)
 		total_price = len(data) * movie.price
 		form = CheckoutForm()
-	return render(request, 'movie/pay.html', {'form': form, 'time': time, 'data': data, 'movie': movie, 'total_price':total_price})
+	return render(request, 'movie/pay.html',
+				  {'form': form, 'time': time, 'data': data, 'movie': movie, 'total_price': total_price})

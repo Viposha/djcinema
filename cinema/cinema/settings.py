@@ -138,3 +138,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 CAPTCHA_NOISE_FUNCTIONS = None
+
+EMAIL_HOST = 'smtp.ukr.net'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'takmebli@ukr.net'
+EMAIL_HOST_PASSWORD = 'w7qdO03HvpbZXoJU'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
