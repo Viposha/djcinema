@@ -1,3 +1,7 @@
+.errorlist {
+ color: red;
+}
+
 .indent {
    margin: 0 0 20rem;
 }

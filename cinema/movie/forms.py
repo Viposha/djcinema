@@ -26,7 +26,7 @@ class CheckoutForm(forms.Form):
 	def clean_card_number(self):
 		card_number = self.cleaned_data['card_number']
 		if len(str(card_number)) != 16:
-			raise ValidationError('Номер картки має містити 16 символів')
+			raise ValidationError(f'Номер картки має містити 16 символів. Ви ввели {len(str(card_number))}')
 		return card_number
 
 	def clean_cvv(self):
@@ -38,5 +38,5 @@ class CheckoutForm(forms.Form):
 	def clean_valid_to(self):
 		valid_to = self.cleaned_data['valid_to']
 		if not re.match(r"\d{2}/\d{2}", valid_to):
-			raise ValidationError('Поле Термін дії має виглядатати так mm/yy')
+			raise ValidationError('Поле Термін дії має виглядати так mm/yy')
 		return valid_to
