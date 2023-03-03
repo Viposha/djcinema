@@ -10,8 +10,14 @@ class ReviewForm(forms.ModelForm):
 	class Meta:
 		model = Review
 		fields = ['rating', 'content', 'title']
+		labels = {
+			'rating': 'Рейтинг',
+			'content': 'Відгук',
+			'title': 'Обери фільм',
+			'captcha': 'Виріши приклад'
+		}
 		widgets = {
-		'rating': forms.NumberInput(attrs={'class': 'form-control'}),
+		'rating': forms.Select(attrs={'class': 'form-control'}),
 		'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
 		'title': forms.Select(attrs={'class': 'form-control'})
 		}

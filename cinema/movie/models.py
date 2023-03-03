@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Hall(models.Model):
@@ -33,7 +34,7 @@ class Movie(models.Model):
 
 
 class Review(models.Model):
-	rating = models.IntegerField()
+	rating = models.IntegerField(choices=list(zip(range(1, 6), range(1, 6))), default=5)
 	content = models.TextField()
 	title = models.ForeignKey(Movie, on_delete=models.PROTECT)
 
