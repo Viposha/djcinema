@@ -1,11 +1,11 @@
-asgiref==3.8.1
-captcha==0.5.0
-Django==5.0.4
-django-multi-captcha-admin==2.0.0
-django-ranged-response==0.2.0
-django-simple-captcha==0.6.0
-pillow==10.3.0
-sqlparse==0.4.3
-tzdata==2022.7
-gunicorn==20.1.0
+asgiref
+captcha
+Django
+django-multi-captcha-admin
+django-ranged-response
+django-simple-captcha
+pillow
+sqlparse
+tzdata
+gunicorn
 

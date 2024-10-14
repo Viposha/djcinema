@@ -99,7 +99,6 @@ def pay_view(request):
 		hall = movie.hall.title
 		title = movie.title
 		if form.is_valid():
-			print(form.cleaned_data)
 			for place in data:
 				seat = seats_dict[int(place)][1]
 				row = seats_dict[int(place)][0]
