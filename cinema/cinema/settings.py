@@ -126,7 +126,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'cinema/static'), os.path.join(BASE_DIR, 'cinema/cinema/static'), '/root/projects/djcinema/cinema/static']
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'cinema/static'),]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
